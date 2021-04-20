@@ -36,7 +36,7 @@ func _physics_process(delta):
 		movement.y = -jumpForce
 	
 	movement = move_and_slide(movement,Vector2.UP)
-	global_position.x = clamp(global_position.x,camera.global_position.x-240,camera.global_position.x+240)
+	global_position.x = clamp(global_position.x,camera.global_position.x-240+1,camera.global_position.x+240-1)
 	
 	var animation : String = "idle"
 	
