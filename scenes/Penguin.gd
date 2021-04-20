@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var camera = $"../mainCamera" 
+
 var acceleration : float = 256
 var gravity : float = 384
 var jumpForce : float = 128
@@ -34,6 +36,7 @@ func _physics_process(delta):
 		movement.y = -jumpForce
 	
 	movement = move_and_slide(movement,Vector2.UP)
+	global_position.x = clamp(global_position.x,camera.global_position.x-240,camera.global_position.x+240)
 	
 	var animation : String = "idle"
 	
