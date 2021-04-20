@@ -27,7 +27,10 @@ func _physics_process(delta):
 	movement.y += gravity * delta
 	movement.y = clamp(movement.y,movement.y,maxVerFallingSpeed)
 	
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if is_on_floor():
+		$Timer_coyoteGround.start()
+	
+	if Input.is_action_just_pressed("ui_accept") and ! $Timer_coyoteGround.is_stopped():
 		movement.y = -jumpForce
 	
 	movement = move_and_slide(movement,Vector2.UP)

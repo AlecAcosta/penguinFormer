@@ -4,30 +4,33 @@
 [ext_resource path="res://scenes/Coin.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 6.11515
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
 length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../Coin/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.7, 2.8, 2.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.6, 2.7, 2.8, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 0, 1, 2, 1 ]
 }
 
 [node name="Coin" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 4
+frame = 2
 region_enabled = true
 region_rect = Rect2( 96, 80, 64, 16 )
 
