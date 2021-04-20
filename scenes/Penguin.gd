@@ -11,6 +11,9 @@ var frictionWeight : float = 0.2
 
 var movement : Vector2 = Vector2(0,0)
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	var horDir : int = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
