@@ -47,7 +47,6 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 2
-frame = 1
 region_enabled = true
 region_rect = Rect2( 16, 80, 32, 16 )
 
