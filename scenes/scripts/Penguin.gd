@@ -53,8 +53,7 @@ func movePlayer(_delta):
 func detectBoxes():
 	if $RayCast2D_up.is_colliding():
 		var _coll = $RayCast2D_up.get_collider()
-		print(_coll.get_class())
-		if (_coll.name == "Box"):################################
+		if (_coll.is_in_group("Boxes")):
 			_coll.punched()
 
 func applyAnimations():
