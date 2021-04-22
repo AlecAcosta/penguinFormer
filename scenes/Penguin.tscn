@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/penguin.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Penguin.gd" type="Script" id=2]
+[ext_resource path="res://scenes/scripts/Penguin.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.0
@@ -187,3 +187,8 @@ anims/run = SubResource( 5 )
 [node name="Timer_coyoteGround" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="RayCast2D_up" type="RayCast2D" parent="."]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 0, -2 )
