@@ -57,11 +57,10 @@ tracks/3/keys = {
 }
 
 [node name="CoinGrabbed" type="Sprite"]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 4
 region_enabled = true
-region_rect = Rect2( 96, 80, 64, 16 )
+region_rect = Rect2( 96, 96, 32, 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
