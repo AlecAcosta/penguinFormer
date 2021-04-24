@@ -12,6 +12,8 @@ var frictionWeight : float = 0.2
 var movement : Vector2 = Vector2(0,0)
 var horDir : int = 0
 
+onready var viewportWidth = get_viewport_rect().size.x
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().reload_current_scene()
@@ -24,7 +26,7 @@ func _physics_process(delta):
 	applyAnimations()
 	
 	movement = move_and_slide(movement,Vector2.UP)
-	global_position.x = clamp(global_position.x,camera.global_position.x-240+1,camera.global_position.x+240-1)
+	global_position.x = clamp(global_position.x,camera.global_position.x-(viewportWidth/2),camera.global_position.x+(viewportWidth/2))
 	
 
 func movePlayer(_delta):

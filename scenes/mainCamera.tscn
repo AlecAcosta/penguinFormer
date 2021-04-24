@@ -2,8 +2,7 @@
 
 [ext_resource path="res://scenes/scripts/mainCamera.gd" type="Script" id=1]
 
-
 [node name="mainCamera" type="Camera2D"]
-position = Vector2( 240, 135 )
+position = Vector2( 160, 90 )
 current = true
 script = ExtResource( 1 )
