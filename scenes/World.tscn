@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/TileMap_world.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/HiddenBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/mainCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
-
-[node name="mainCamera" parent="." instance=ExtResource( 5 )]
 
 [node name="ColorRect_lvlBkg" type="ColorRect" parent="."]
 margin_right = 2240.0
@@ -60,3 +59,11 @@ position = Vector2( 1968, 64 )
 
 [node name="HiddenBox" parent="Boxes" instance=ExtResource( 4 )]
 position = Vector2( 368, 16 )
+
+[node name="mainCamera" parent="." instance=ExtResource( 5 )]
+
+[node name="GUI" parent="mainCamera" instance=ExtResource( 6 )]
+margin_left = -160.0
+margin_top = -90.0
+margin_right = -160.0
+margin_bottom = -90.0
