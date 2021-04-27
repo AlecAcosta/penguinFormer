@@ -1,7 +1,7 @@
 extends Node
 
-var coins: int = 0 setget set_coins
+var levelCoins: int = 0 setget set_levelCoins
 
-func set_coins(_value):
-	coins = _value
-	print("set_coins() on Global.gd\ncoins = "+str(coins))
+func set_levelCoins(_value):
+	levelCoins = _value
+	get_tree().call_group("GUI","set_coins",levelCoins)

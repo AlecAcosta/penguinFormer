@@ -14,6 +14,9 @@ var horDir : int = 0
 
 onready var viewportWidth = get_viewport_rect().size.x
 
+func _ready():
+	Global.levelCoins = 0
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().reload_current_scene()
