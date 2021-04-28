@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-onready var camera = $"../mainCamera" 
+onready var camera = $"../mainCamera"
+onready var viewportWidth = get_viewport_rect().size.x
 
 var acceleration : float = 256
 var gravity : float = 384
@@ -11,8 +12,6 @@ var frictionWeight : float = 0.2
 
 var movement : Vector2 = Vector2(0,0)
 var horDir : int = 0
-
-onready var viewportWidth = get_viewport_rect().size.x
 
 func _ready():
 	Global.levelCoins = 0

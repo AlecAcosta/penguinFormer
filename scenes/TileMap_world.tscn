@@ -636,7 +636,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 23/shapes = [  ]
 23/z_index = 0
 
-[node name="TileMap_world" type="TileMap"]
+[node name="TileMap_world" type="TileMap" groups=[
+"TilemapWorld",
+]]
 position = Vector2( -8, -8 )
 tile_set = SubResource( 25 )
 cell_size = Vector2( 16, 16 )
