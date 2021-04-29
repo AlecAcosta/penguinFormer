@@ -48,9 +48,19 @@ func moveEnemy(_delta):
 func detectSideCollisions():
 	if $RayCast2D_Right.is_colliding():
 		var _coll = $RayCast2D_Right.get_collider()
-		if (_coll.is_in_group("TilemapWorld")):
+		if (_coll.is_in_group("TilemapWorld") or _coll.is_in_group("Entity")):
 			horDir = -1
+			if _coll.is_in_group("Penguin"):
+				_coll.damaged()
 	if $RayCast2D_Left.is_colliding():
 		var _coll = $RayCast2D_Left.get_collider()
-		if (_coll.is_in_group("TilemapWorld")):
+		if (_coll.is_in_group("TilemapWorld") or _coll.is_in_group("Entity")):
 			horDir = 1
+			if _coll.is_in_group("Penguin"):
+				_coll.damaged()
+
+
+func _on_Area2D_Head_body_entered(body):
+	if body.is_in_group("Penguin"):
+		body.bounce(body.jumpForce/2)
+		queue_free()

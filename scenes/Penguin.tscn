@@ -165,7 +165,10 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[node name="Penguin" type="KinematicBody2D"]
+[node name="Penguin" type="KinematicBody2D" groups=[
+"Entity",
+"Penguin",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

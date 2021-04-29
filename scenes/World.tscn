@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/HiddenBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/mainCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Enemy_red.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/EnemyRed.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
 
@@ -63,19 +63,19 @@ position = Vector2( 368, 16 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy_red" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyRed" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 288, 112 )
 
-[node name="Enemy_red2" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyRed2" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 784, 144 )
 
-[node name="Enemy_red3" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyRed3" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 1472, 112 )
 
-[node name="Enemy_red4" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyRed4" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 1488, 112 )
 
-[node name="Enemy_red5" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyRed5" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 2000, 96 )
 
 [node name="mainCamera" parent="." instance=ExtResource( 5 )]

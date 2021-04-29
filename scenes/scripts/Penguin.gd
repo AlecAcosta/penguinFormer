@@ -72,3 +72,9 @@ func applyAnimations():
 			animation = "fall"
 	
 	$AnimationPlayer.play(animation)
+
+func damaged():
+	get_tree().reload_current_scene()
+
+func bounce(_force):
+	movement.y = -_force
