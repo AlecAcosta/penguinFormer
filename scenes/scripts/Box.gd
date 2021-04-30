@@ -7,7 +7,7 @@ func punched():
 	if (dropCoin):
 		dropCoin = false
 		var iCoinGrabbed = rCoinGrabbed.instance()
-		iCoinGrabbed.global_position = self.global_position + Vector2(0,-8)###
+		iCoinGrabbed.global_position = self.global_position + Vector2(0,-8)
 		get_tree().get_root().add_child(iCoinGrabbed)
 		Global.levelCoins += 1
 		$AnimationPlayer.play("break")

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var rPenguinDead = preload("res://scenes/PenguinDead.tscn")
+
 onready var camera = $"../mainCamera"
 onready var viewportWidth = get_viewport_rect().size.x
 
@@ -59,6 +61,7 @@ func detectBoxes():
 		var _coll = $RayCast2D_up.get_collider()
 		if (_coll.is_in_group("Boxes")):
 			_coll.punched()
+			movement.y = jumpForce/2
 
 func applyAnimations():
 	var animation : String = "idle"
@@ -74,7 +77,10 @@ func applyAnimations():
 	$AnimationPlayer.play(animation)
 
 func damaged():
-	get_tree().reload_current_scene()
+	queue_free()
+	var iPenguinDead = rPenguinDead.instance()
+	iPenguinDead.global_position = self.global_position
+	get_tree().get_root().add_child(iPenguinDead)
 
 func bounce(_force):
 	movement.y = -_force

@@ -1,11 +1,6 @@
 extends KinematicBody2D
 
-enum states {
-	IDLE,
-	WALKING
-}
-
-var state = states.WALKING
+var rSpriteTempPlaceHolder = preload("res://scenes/SpriteTempPlaceHolder.tscn")
 
 var acceleration : float = 256
 var gravity : float = 384
@@ -18,10 +13,7 @@ var movement : Vector2 = Vector2(0,0)
 var horDir : int = 1
 
 func _physics_process(delta):
-	match state:
-		states.WALKING:
-			detectSideCollisions()
-			moveEnemy(delta)
+	moveEnemy(delta)
 
 func moveEnemy(_delta):
 	#horDir = 0
@@ -45,22 +37,25 @@ func moveEnemy(_delta):
 	
 	movement = move_and_slide(movement,Vector2.UP)
 
-func detectSideCollisions():
-	if $RayCast2D_Right.is_colliding():
-		var _coll = $RayCast2D_Right.get_collider()
-		if (_coll.is_in_group("TilemapWorld") or _coll.is_in_group("Entity")):
-			horDir = -1
-			if _coll.is_in_group("Penguin"):
-				_coll.damaged()
-	if $RayCast2D_Left.is_colliding():
-		var _coll = $RayCast2D_Left.get_collider()
-		if (_coll.is_in_group("TilemapWorld") or _coll.is_in_group("Entity")):
-			horDir = 1
-			if _coll.is_in_group("Penguin"):
-				_coll.damaged()
-
-
 func _on_Area2D_Head_body_entered(body):
 	if body.is_in_group("Penguin"):
 		body.bounce(body.jumpForce/2)
+		var iSpriteTempPlaceHolder = rSpriteTempPlaceHolder.instance()
+		iSpriteTempPlaceHolder.get_node("AnimationPlayer").play("EnemyRed")
+		iSpriteTempPlaceHolder.global_position = self.global_position
+		get_tree().get_root().add_child(iSpriteTempPlaceHolder)
 		queue_free()
+
+
+func _on_Area2D_Right_body_entered(body):
+	if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+		horDir = -1
+		if body.is_in_group("Penguin"):
+			body.damaged()
+
+
+func _on_Area2D_Left_body_entered(body):
+	if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+		horDir = 1
+		if body.is_in_group("Penguin"):
+			body.damaged()
