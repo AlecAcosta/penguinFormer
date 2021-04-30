@@ -30,6 +30,7 @@ func moveEnemy(_delta):
 	movement.x += horDir * acceleration * _delta
 	movement.x = clamp(movement.x,-maxHorSpeed,maxHorSpeed)
 	
+	#Animations
 	if (horDir == 0):
 		if (abs(movement.x) < 0.1):
 			movement.x = 0
