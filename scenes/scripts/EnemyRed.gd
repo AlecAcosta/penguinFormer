@@ -2,6 +2,13 @@ extends KinematicBody2D
 
 var rSpriteTempPlaceHolder = preload("res://scenes/SpriteTempPlaceHolder.tscn")
 
+enum states {
+	WALKING,
+	DYING
+}
+
+var state = states.WALKING
+
 var acceleration : float = 256
 var gravity : float = 384
 var jumpForce : float = 128
@@ -13,7 +20,9 @@ var movement : Vector2 = Vector2(0,0)
 var horDir : int = 1
 
 func _physics_process(delta):
-	moveEnemy(delta)
+	match state:
+		states.WALKING:
+			moveEnemy(delta)
 
 func moveEnemy(_delta):
 	#horDir = 0
@@ -38,24 +47,31 @@ func moveEnemy(_delta):
 	movement = move_and_slide(movement,Vector2.UP)
 
 func _on_Area2D_Head_body_entered(body):
-	if body.is_in_group("Penguin"):
-		body.bounce(body.jumpForce/2)
-		var iSpriteTempPlaceHolder = rSpriteTempPlaceHolder.instance()
-		iSpriteTempPlaceHolder.get_node("AnimationPlayer").play("EnemyRed")
-		iSpriteTempPlaceHolder.global_position = self.global_position
-		get_tree().get_root().add_child(iSpriteTempPlaceHolder)
-		queue_free()
+	if state == states.WALKING:
+		if body.is_in_group("Penguin"):
+			if body.state != states.DYING:
+				state = states.DYING
+				body.bounce(body.jumpForce/2)
+				var iSpriteTempPlaceHolder = rSpriteTempPlaceHolder.instance()
+				iSpriteTempPlaceHolder.get_node("AnimationPlayer").play("EnemyRed")
+				iSpriteTempPlaceHolder.global_position = self.global_position
+				get_tree().get_root().add_child(iSpriteTempPlaceHolder)
+				queue_free()
 
 
 func _on_Area2D_Right_body_entered(body):
-	if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
-		horDir = -1
-		if body.is_in_group("Penguin"):
-			body.damaged()
+	if state == states.WALKING:
+		if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+			horDir = -1
+			if body.is_in_group("Penguin"):
+				if body.state != states.DYING:
+					body.damaged()
 
 
 func _on_Area2D_Left_body_entered(body):
-	if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
-		horDir = 1
-		if body.is_in_group("Penguin"):
-			body.damaged()
+	if state == states.WALKING:
+		if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+			horDir = 1
+			if body.is_in_group("Penguin"):
+				if body.state != states.DYING:
+					body.damaged()

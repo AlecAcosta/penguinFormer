@@ -2,6 +2,13 @@ extends KinematicBody2D
 
 var rPenguinDead = preload("res://scenes/PenguinDead.tscn")
 
+enum states {
+	PLAYING,
+	DYING
+}
+
+var state = states.PLAYING
+
 onready var camera = $"../mainCamera"
 onready var viewportWidth = get_viewport_rect().size.x
 
@@ -19,15 +26,15 @@ func _ready():
 	Global.levelCoins = 0
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().reload_current_scene()
+	if state == states.PLAYING:
+		if Input.is_action_just_pressed("ui_cancel"):
+			get_tree().reload_current_scene()
 
 func _physics_process(delta):
-	movePlayer(delta)
-	
-	detectBoxes()
-	
-	applyAnimations()
+	if state == states.PLAYING:
+		movePlayer(delta)
+		detectBoxes()
+		applyAnimations()
 	
 	movement = move_and_slide(movement,Vector2.UP)
 	global_position.x = clamp(global_position.x,camera.global_position.x-(viewportWidth/2),camera.global_position.x+(viewportWidth/2))
@@ -77,10 +84,13 @@ func applyAnimations():
 	$AnimationPlayer.play(animation)
 
 func damaged():
-	queue_free()
-	var iPenguinDead = rPenguinDead.instance()
-	iPenguinDead.global_position = self.global_position
-	get_tree().get_root().add_child(iPenguinDead)
+	if state == states.PLAYING:
+		state = states.DYING
+		queue_free()
+		var iPenguinDead = rPenguinDead.instance()
+		iPenguinDead.global_position = self.global_position
+		get_tree().get_root().add_child(iPenguinDead)
 
 func bounce(_force):
-	movement.y = -_force
+	if state == states.PLAYING:
+		movement.y = -_force
