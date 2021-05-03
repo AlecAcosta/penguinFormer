@@ -54,11 +54,11 @@ b = Vector2( 5, 0 )
 
 [sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 6, 4 )
-b = Vector2( 7, 9 )
+b = Vector2( 6, 9 )
 
 [sub_resource type="SegmentShape2D" id=5]
 a = Vector2( -6, 4 )
-b = Vector2( -7, 9 )
+b = Vector2( -6, 9 )
 
 [node name="EnemyRed" type="KinematicBody2D" groups=[
 "Enemy",
