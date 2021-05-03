@@ -41,7 +41,7 @@ func _physics_process(delta):
 	
 
 func movePlayer(_delta):
-	horDir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	horDir = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
 	movement.x += horDir * acceleration * _delta
 	movement.x = clamp(movement.x,-maxHorSpeed,maxHorSpeed)
@@ -60,7 +60,7 @@ func movePlayer(_delta):
 	if is_on_floor():
 		$Timer_coyoteGround.start()
 	
-	if Input.is_action_just_pressed("ui_accept") and ! $Timer_coyoteGround.is_stopped():
+	if Input.is_action_just_pressed("jump") and ! $Timer_coyoteGround.is_stopped():
 		movement.y = -jumpForce
 
 func detectBoxes():
