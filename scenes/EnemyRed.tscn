@@ -48,17 +48,14 @@ tracks/2/keys = {
 "values": [ Rect2( 16, 32, 96, 16 ) ]
 }
 
-[sub_resource type="SegmentShape2D" id=3]
-a = Vector2( -5, 0 )
-b = Vector2( 5, 0 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 1 )
 
-[sub_resource type="SegmentShape2D" id=4]
-a = Vector2( 6, 4 )
-b = Vector2( 6, 9 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1, 2 )
 
-[sub_resource type="SegmentShape2D" id=5]
-a = Vector2( -6, 4 )
-b = Vector2( -6, 9 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1, 2 )
 
 [node name="EnemyRed" type="KinematicBody2D" groups=[
 "Enemy",
@@ -84,19 +81,19 @@ anims/walking = SubResource( 2 )
 [node name="Area2D_Head" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Head"]
-position = Vector2( 0, -5 )
-shape = SubResource( 3 )
+position = Vector2( 0, -4 )
+shape = SubResource( 6 )
 
 [node name="Area2D_Right" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Right"]
-position = Vector2( 0, -5 )
+position = Vector2( 6, 1 )
 shape = SubResource( 4 )
 
 [node name="Area2D_Left" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Left"]
-position = Vector2( 0, -5 )
+position = Vector2( -6, 1 )
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="Area2D_Head" to="." method="_on_Area2D_Head_body_entered"]
