@@ -19,10 +19,30 @@ var frictionWeight : float = 0.2
 var movement : Vector2 = Vector2(0,0)
 var horDir : int = 1
 
+onready var RayLeft = $RayCast2D_Left
+onready var RayRight = $RayCast2D_Right
+
 func _physics_process(delta):
 	match state:
 		states.WALKING:
 			moveEnemy(delta)
+			if RayRight.is_colliding():
+				var body = RayRight.get_collider()
+				if is_instance_valid(body):
+					if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+						horDir = -1
+						if body.is_in_group("Penguin"):
+							if body.state != states.DYING:
+								body.damaged()
+								
+			if RayLeft.is_colliding():
+				var body = RayLeft.get_collider()
+				if is_instance_valid(body):
+					if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
+						horDir = 1
+						if body.is_in_group("Penguin"):
+							if body.state != states.DYING:
+								body.damaged()
 
 func moveEnemy(_delta):
 	#horDir = 0
@@ -58,21 +78,3 @@ func _on_Area2D_Head_body_entered(body):
 				iSpriteTempPlaceHolder.global_position = self.global_position
 				get_tree().get_root().add_child(iSpriteTempPlaceHolder)
 				queue_free()
-
-
-func _on_Area2D_Right_body_entered(body):
-	if state == states.WALKING:
-		if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
-			horDir = -1
-			if body.is_in_group("Penguin"):
-				if body.state != states.DYING:
-					body.damaged()
-
-
-func _on_Area2D_Left_body_entered(body):
-	if state == states.WALKING:
-		if (body.is_in_group("TilemapWorld") or body.is_in_group("Entity")):
-			horDir = 1
-			if body.is_in_group("Penguin"):
-				if body.state != states.DYING:
-					body.damaged()
