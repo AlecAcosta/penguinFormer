@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var rSpriteTempPlaceHolder = preload("res://scenes/SpriteTempPlaceHolder.tscn")
+var rEnemyDead = preload("res://scenes/EnemyDead.tscn")
 
 enum states {
 	WALKING,
@@ -73,8 +73,8 @@ func _on_Area2D_Head_body_entered(body):
 			if body.state != states.DYING:
 				state = states.DYING
 				body.bounce(body.jumpForce/2)
-				var iSpriteTempPlaceHolder = rSpriteTempPlaceHolder.instance()
-				iSpriteTempPlaceHolder.get_node("AnimationPlayer").play("EnemyRed")
-				iSpriteTempPlaceHolder.global_position = self.global_position
-				get_tree().get_root().add_child(iSpriteTempPlaceHolder)
+				var iEnemyDead = rEnemyDead.instance()
+				iEnemyDead.get_node("AnimationPlayer").play("EnemyRed")
+				iEnemyDead.global_position = self.global_position
+				get_tree().get_root().add_child(iEnemyDead)
 				queue_free()

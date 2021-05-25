@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/Items.png" type="Texture" id=1]
 [ext_resource path="res://scenes/scripts/Box.gd" type="Script" id=2]
+[ext_resource path="res://sounds/break.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -56,3 +57,6 @@ shape = SubResource( 1 )
 autoplay = "idle"
 anims/break = SubResource( 2 )
 anims/idle = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

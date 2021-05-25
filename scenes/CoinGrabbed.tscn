@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/Items.png" type="Texture" id=1]
+[ext_resource path="res://sounds/coin.ogg" type="AudioStream" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -65,3 +66,7 @@ region_rect = Rect2( 96, 96, 32, 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/idle = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true

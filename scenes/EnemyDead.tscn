@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sprites/hero and enemies.png" type="Texture" id=1]
 [ext_resource path="res://scenes/scripts/SpriteTempPlaceHolder.gd" type="Script" id=2]
+[ext_resource path="res://sounds/enemy_die.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "EnemyRed"
@@ -19,7 +20,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 16, 16, 16 ) ]
 }
 
-[node name="SpriteTempPlaceHolder" type="Sprite"]
+[node name="enemyDead" type="Sprite"]
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 16, 16, 16 )
@@ -27,5 +28,8 @@ script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/EnemyRed = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -62,6 +62,7 @@ func movePlayer(_delta):
 	
 	if Input.is_action_just_pressed("jump") and ! $Timer_coyoteGround.is_stopped():
 		movement.y = -jumpForce
+		$AudioStreamPlayer.play()
 
 func detectBoxes():
 	if $RayCast2D_up.is_colliding():

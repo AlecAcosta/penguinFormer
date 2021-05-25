@@ -10,6 +10,7 @@ func punched():
 		iCoinGrabbed.global_position = self.global_position + Vector2(0,-8)
 		get_tree().get_root().add_child(iCoinGrabbed)
 		Global.levelCoins += 1
+		$AudioStreamPlayer.play()
 		$AnimationPlayer.play("break")
 		yield($AnimationPlayer,"animation_finished")
 		queue_free()
