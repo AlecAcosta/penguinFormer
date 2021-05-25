@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/TileMap_world.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/EnemyRed.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sounds/gameSfx.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 
@@ -26,6 +27,38 @@ tile_data = PoolIntArray( 262151, 20, 0, 262166, 20, 0, 262184, 20, 0, 262199, 2
 
 [node name="Penguin" parent="." instance=ExtResource( 2 )]
 position = Vector2( 48, 96 )
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 288, 96 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 304, 96 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 320, 96 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 896, 96 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1072, 128 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1088, 128 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1104, 128 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1072, 112 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1088, 112 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 9 )]
+position = Vector2( 1104, 112 )
 
 [node name="Boxes" type="Node2D" parent="."]
 
